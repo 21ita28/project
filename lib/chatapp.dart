@@ -1,3 +1,4 @@
+import 'package:college/userpage.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(ChatApp());
@@ -60,11 +61,52 @@ class _ChatPageState extends State<ChatPage> {
     return '"$userMessage"';
   }
 
+  void _closeTicket() {
+    // Handle the close ticket logic here
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Close Ticket'),
+          content: Text('Are you sure you want to close this ticket?'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                // Implement logout functionality here
+                Navigator.of(context).pop();
+
+              },
+              child: Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Userpage()));
+                // Add any additional logic for closing the ticket here
+              },
+              child: Text('Close Ticket'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('No Light'),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.close),
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Userpage()));
+              // Add any additional logic for closing the ticket here
+            },
+          ),
+        ],
       ),
       body: Column(
         children: [
@@ -128,6 +170,20 @@ class _ChatPageState extends State<ChatPage> {
               ],
             ),
           ),
+          // Close Ticket Button
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: ElevatedButton(
+              onPressed: _closeTicket,
+              child: Text('  Close Ticket  '),
+              style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(vertical: 15),
+
+                textStyle: TextStyle(fontSize: 16),
+              ),
+            ),
+          ),
+          const SizedBox(height: 10), // Optional spacing below the button
         ],
       ),
     );

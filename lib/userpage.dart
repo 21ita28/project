@@ -82,6 +82,27 @@ class _UserpageState extends State<Userpage> {
                       ),
                     ),
                   ]),
+                  DataRow(cells: [
+                    DataCell(Text(
+                      'No Fan',
+                      style: const TextStyle(fontSize: 18), // Content font size
+                    )),
+                    DataCell(
+                      GestureDetector(
+                        onTap: () {
+                          // Navigate to the chat page when clicked
+                          Navigator.push(context, MaterialPageRoute(builder:(context)=>ChatApp()));
+                        },
+                        child: Text(
+                          'Raised',
+                          style: const TextStyle(
+                            color: Colors.blue, // Mimic URL style
+                            fontSize: 18, // Content font size
+                          ),
+                        ),
+                      ),
+                    ),
+                  ]),
                 ],
               ),
             ),

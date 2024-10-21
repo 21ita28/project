@@ -1,3 +1,5 @@
+import 'package:college/changepasswordapp.dart';
+import 'package:college/main.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(SuperAdmin());
@@ -32,18 +34,7 @@ class _SuperAdminHomePageState extends State<SuperAdminHomePage> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-              child: Text(
-                'Admin Menu',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                ),
-              ),
-            ),
+            SizedBox(height: 50),
             ListTile(
               leading: Icon(Icons.home),
               title: Text('Department'),
@@ -83,7 +74,7 @@ class _SuperAdminHomePageState extends State<SuperAdminHomePage> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => ChangePasswordPage()));
+                        builder: (context) => ChangePasswordApp()));
               },
             ),
             ListTile(
@@ -99,6 +90,8 @@ class _SuperAdminHomePageState extends State<SuperAdminHomePage> {
               title: Text('Logout'),
               onTap: () {
                 // Implement logout functionality here
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => CollegeLoginApp()));
               },
             ),
           ],
@@ -230,9 +223,7 @@ class ChangePasswordPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Change Password'),
       ),
-      body: Center(
-        child: Text('Change Password Page'),
-      ),
+
     );
   }
 }
@@ -251,3 +242,4 @@ class UpdateRolePage extends StatelessWidget {
     );
   }
 }
+

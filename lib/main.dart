@@ -57,7 +57,7 @@ class _LoginPageState extends State<LoginPage> {
         context,
         MaterialPageRoute(builder: (context) => Userpage()),
       );}
-    else if (username == "superadmin" && password == "sadmin") {
+    else if (username == "sadmin" && password == "test") {
       // Navigate to the UserPage when the username and password match
       Navigator.push(
         context,
