@@ -1,3 +1,4 @@
+import 'package:college/superadmin.dart';
 import 'package:college/userpage.dart';
 import 'package:flutter/material.dart';
 
@@ -55,7 +56,13 @@ class _LoginPageState extends State<LoginPage> {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => Userpage()),
-      );} else {
+      );}
+    else if (username == "superadmin" && password == "sadmin") {
+      // Navigate to the UserPage when the username and password match
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => SuperAdmin()),
+      );}else {
       // Show error message if credentials are incorrect
       showDialog(
         context: context,
