@@ -1,52 +1,33 @@
-import 'package:college/userpage.dart';
+import 'package:college/incharge/incharge.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(ChatApp());
+class Inchargerise extends StatefulWidget {
+  final String issueTitle;
 
-class ChatApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Chat App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: ChatPage(issueTitle:'',),
-    );
-  }
-}
-
-class ChatPage extends StatefulWidget {
-  final String issueTitle; // Add issueTitle as a property
-
-  // Create a constructor that accepts issueTitle as a named parameter
-  ChatPage({required this.issueTitle});
+  Inchargerise({required this.issueTitle});
 
   @override
-  _ChatPageState createState() => _ChatPageState();
+  _InchargeriseState createState() => _InchargeriseState();
 }
 
-class _ChatPageState extends State<ChatPage> {
+class _InchargeriseState extends State<Inchargerise> {
   final TextEditingController _messageController = TextEditingController();
   final List<Map<String, String>> _messages = [];
 
   void _sendMessage() {
     if (_messageController.text.isNotEmpty) {
-      final userMessage = {
-        'sender': 'You',
-        'content': _messageController.text,
-        'timestamp': _getCurrentTime(),
-      };
-
       setState(() {
         // Add user's message
-        _messages.add(userMessage);
+        _messages.add({
+          'sender': 'You',
+          'content': _messageController.text,
+          'timestamp': _getCurrentTime(),
+        });
 
         // Simulate a bot response
         _messages.add({
           'sender': 'Bot',
-          'content': _generateBotResponse(userMessage['content']!),
+          'content': _generateBotResponse(_messageController.text),
           'timestamp': _getCurrentTime(),
         });
 
@@ -65,31 +46,31 @@ class _ChatPageState extends State<ChatPage> {
 
   String _generateBotResponse(String userMessage) {
     // Simple bot response logic
-    return 'You said: "$userMessage"';
+    return '"$userMessage"';
   }
 
-  void _closeTicket() {
-    // Handle the close ticket logic here
+  void _handleTicketStatus(String status) {
+    // Handle the logic based on the selected status (Completed or Pending)
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Close Ticket'),
-          content: Text('Are you sure you want to close this ticket?'),
+          title: Text('$status Ticket'),
+          content: Text('Are you sure you want to mark this ticket as $status?'),
           actions: [
             TextButton(
               onPressed: () {
-                Navigator.of(context).pop(); // Close the dialog
+                Navigator.of(context).pop();
               },
               child: Text('Cancel'),
             ),
             TextButton(
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Userpage()));
-                // Add any additional logic for closing the ticket here
+                    MaterialPageRoute(builder: (context) => Incharge()));
+                // Add any additional logic for ticket status update here
               },
-              child: Text('Close Ticket'),
+              child: Text(status),
             ),
           ],
         );
@@ -105,7 +86,10 @@ class _ChatPageState extends State<ChatPage> {
         actions: [
           IconButton(
             icon: Icon(Icons.close),
-            onPressed: _closeTicket,
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Incharge()));
+            },
           ),
         ],
       ),
@@ -122,7 +106,8 @@ class _ChatPageState extends State<ChatPage> {
                   alignment:
                   isSender ? Alignment.centerRight : Alignment.centerLeft,
                   child: Container(
-                    margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                    margin:
+                    const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       color: isSender ? Colors.blue[200] : Colors.grey[300],
@@ -140,7 +125,8 @@ class _ChatPageState extends State<ChatPage> {
                         SizedBox(height: 5),
                         Text(
                           '${message['timestamp']}',
-                          style: TextStyle(fontSize: 12, color: Colors.grey[600]),
+                          style: TextStyle(
+                              fontSize: 12, color: Colors.grey[600]),
                         ),
                       ],
                     ),
@@ -169,19 +155,31 @@ class _ChatPageState extends State<ChatPage> {
               ],
             ),
           ),
-          // Close Ticket Button
+          // Row with Completed and Pending buttons
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: ElevatedButton(
-              onPressed: _closeTicket,
-              child: Text('  Close Ticket  '),
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 15),
-                textStyle: TextStyle(fontSize: 16),
-              ),
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                  onPressed: () => _handleTicketStatus('Pending'),
+                  child: Text('Pending'),
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
+                    textStyle: TextStyle(fontSize: 16),
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () => _handleTicketStatus('Completed'),
+                  child: Text('Completed'),
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
+                    textStyle: TextStyle(fontSize: 16),
+                  ),
+                ),
+              ],
             ),
           ),
-          const SizedBox(height: 10), // Optional spacing below the button
         ],
       ),
     );

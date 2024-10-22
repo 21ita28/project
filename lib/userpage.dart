@@ -1,5 +1,8 @@
+import 'package:college/changepasswordapp.dart';
 import 'package:college/chatapp.dart';
+import 'package:college/main.dart';
 import 'package:college/risepage.dart';
+import 'package:college/userchangepassword.dart';
 import 'package:flutter/material.dart';
 
 class Userpage extends StatefulWidget {
@@ -26,8 +29,45 @@ class _UserpageState extends State<Userpage> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 _buildUrlLink(context, 'Home', '/home'),
-                _buildUrlLink(context, 'Change Password', '/changepassword'),
-                _buildUrlLink(context, 'Logout', '/logout'),
+
+                GestureDetector(
+
+                  onTap: () {
+                    // Navigate to the chat page when clicked
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Userchangepassword(),
+                      ),
+                    );
+                  },
+                  child: const Text(
+                    'Change Password',
+                    style: TextStyle(
+                      color: Colors.blue, // Blue color to mimic a URL link
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
+                GestureDetector(
+
+                  onTap: () {
+                    // Navigate to the chat page when clicked
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CollegeLoginApp(),
+                      ),
+                    );
+                  },
+                  child: const Text(
+                    'Logout',
+                    style: TextStyle(
+                      color: Colors.blue, // Blue color to mimic a URL link
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
               ],
             ),
 
@@ -38,21 +78,21 @@ class _UserpageState extends State<Userpage> {
               child: DataTable(
                 columns: [
                   DataColumn(
-                    label: Container(
+                    label: SizedBox(
                       width: MediaQuery.of(context).size.width * 0.4, // Adjust width as needed
-                      child: Text(
+                      child: const Text(
                         'Problem',
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ), // Title font size
                       ),
                     ),
                   ),
-                  DataColumn(
+                  const DataColumn(
                     label: Text(
                       'Status',
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ), // Title font size
@@ -61,21 +101,25 @@ class _UserpageState extends State<Userpage> {
                 ],
                 rows: [
                   DataRow(cells: [
-                    DataCell(Text(
+                    const DataCell(Text(
                       'No Light',
-                      style: const TextStyle(fontSize: 18), // Content font size
+                      style: TextStyle(fontSize: 18), // Content font size
                     )),
                     DataCell(
                       GestureDetector(
                         onTap: () {
-                          // Navigate to the chat page when clicked
-                          Navigator.push(context, MaterialPageRoute(builder:(context)=>ChatApp()));
+                          // Pass 'No Light' as the issue title
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ChatPage(issueTitle: 'No Light'),
+                            ),
+                          );
                         },
-                        child: Text(
+                        child: const Text(
                           'Raised',
-                          style: const TextStyle(
+                          style: TextStyle(
                             color: Colors.blue, // Mimic URL style
-
                             fontSize: 18, // Content font size
                           ),
                         ),
@@ -83,19 +127,24 @@ class _UserpageState extends State<Userpage> {
                     ),
                   ]),
                   DataRow(cells: [
-                    DataCell(Text(
+                    const DataCell(Text(
                       'No Fan',
-                      style: const TextStyle(fontSize: 18), // Content font size
+                      style: TextStyle(fontSize: 18), // Content font size
                     )),
                     DataCell(
                       GestureDetector(
                         onTap: () {
-                          // Navigate to the chat page when clicked
-                          Navigator.push(context, MaterialPageRoute(builder:(context)=>ChatApp()));
+                          // Pass 'No Fan' as the issue title
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ChatPage(issueTitle: 'No Fan'),
+                            ),
+                          );
                         },
-                        child: Text(
+                        child: const Text(
                           'Raised',
-                          style: const TextStyle(
+                          style: TextStyle(
                             color: Colors.blue, // Mimic URL style
                             fontSize: 18, // Content font size
                           ),
@@ -132,7 +181,6 @@ class _UserpageState extends State<Userpage> {
           style: const TextStyle(
             color: Colors.blue, // Blue color to mimic a URL link
             fontSize: 18,
-             // Underline to make it look like a link
           ),
         ),
       ),

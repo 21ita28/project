@@ -1,9 +1,9 @@
-import 'package:college/superadmin.dart';
+import 'package:college/userpage.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(ChangePasswordApp());
+void main() => runApp(Userchangepassword());
 
-class ChangePasswordApp extends StatelessWidget {
+class Userchangepassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -71,8 +71,8 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back), // Back button icon
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder:(context)=>SuperAdmin()));
-            //Go back when pressed
+            Navigator.push(context, MaterialPageRoute(builder:(context)=>Userpage()));
+            // Go back when pressed
           },
         ),
       ),

@@ -82,7 +82,7 @@ class _SuperAdminHomePageState extends State<SuperAdminHomePage> {
               title: Text('Update Role'),
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => UpdateRolePage()));
+                    MaterialPageRoute(builder: (context) => UpdateRoleApp()));
               },
             ),
             ListTile(
@@ -229,15 +229,133 @@ class ChangePasswordPage extends StatelessWidget {
 }
 
 // Example Update Role Page
-class UpdateRolePage extends StatelessWidget {
+class UpdateRoleApp extends StatelessWidget {
+  const UpdateRoleApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Update Role',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const UpdateRolePage(),
+    );
+  }
+}
+
+class UpdateRolePage extends StatefulWidget {
+  const UpdateRolePage({Key? key}) : super(key: key);
+
+  @override
+  _UpdateRolePageState createState() => _UpdateRolePageState();
+}
+
+class _UpdateRolePageState extends State<UpdateRolePage> {
+  List<String> users = ['Alice', 'Bob', 'Charlie', 'David'];
+  List<String> roles = ['Admin', 'Incharge', 'Staff', 'Visitor'];
+
+  String? selectedUser;
+  String? selectedRole;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Update Role'),
+        title: const Text('Update Role'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder:(context)=>SuperAdmin()));
+             // Go back to the previous screen
+          },
+        ),
       ),
-      body: Center(
-        child: Text('Update Role Page'),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'Select User:',
+              style: TextStyle(fontSize: 18),
+            ),
+            DropdownButton<String>(
+              value: selectedUser,
+              hint: const Text('Choose User'),
+              isExpanded: true,
+              items: users.map((String user) {
+                return DropdownMenuItem<String>(
+                  value: user,
+                  child: Text(user),
+                );
+              }).toList(),
+              onChanged: (String? newValue) {
+                setState(() {
+                  selectedUser = newValue;
+                });
+              },
+            ),
+            const SizedBox(height: 20), // Spacing
+            const Text(
+              'Select Role:',
+              style: TextStyle(fontSize: 18),
+            ),
+            DropdownButton<String>(
+              value: selectedRole,
+              hint: const Text('Choose Role'),
+              isExpanded: true,
+              items: roles.map((String role) {
+                return DropdownMenuItem<String>(
+                  value: role,
+                  child: Text(role),
+                );
+              }).toList(),
+              onChanged: (String? newValue) {
+                setState(() {
+                  selectedRole = newValue;
+                });
+              },
+            ),
+            const SizedBox(height: 20), // Spacing
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder:(context)=>SuperAdmin()));
+                    if (selectedUser != null && selectedRole != null) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                              'Updated role for $selectedUser to $selectedRole!'),
+                        ),
+                      );
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Please select both user and role.'),
+                        ),
+                      );
+                    }
+                  },
+                  child: const Text('Update'),
+                ),
+                const SizedBox(width: 10), // Spacing
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      selectedUser = null; // Clear user selection
+                      selectedRole = null; // Clear role selection
+                    });
+                  },
+                  child: const Text('Cancel'),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

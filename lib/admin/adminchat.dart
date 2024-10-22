@@ -1,52 +1,26 @@
-import 'package:college/userpage.dart';
+import 'package:college/admin/adminpage.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(ChatApp());
+class Adminchat extends StatefulWidget {
+  final String issueTitle;
 
-class ChatApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Chat App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: ChatPage(issueTitle:'',),
-    );
-  }
-}
-
-class ChatPage extends StatefulWidget {
-  final String issueTitle; // Add issueTitle as a property
-
-  // Create a constructor that accepts issueTitle as a named parameter
-  ChatPage({required this.issueTitle});
+  Adminchat({required this.issueTitle});
 
   @override
-  _ChatPageState createState() => _ChatPageState();
+  _AdminchatState createState() => _AdminchatState();
 }
 
-class _ChatPageState extends State<ChatPage> {
+class _AdminchatState extends State<Adminchat> {
   final TextEditingController _messageController = TextEditingController();
   final List<Map<String, String>> _messages = [];
 
   void _sendMessage() {
     if (_messageController.text.isNotEmpty) {
-      final userMessage = {
-        'sender': 'You',
-        'content': _messageController.text,
-        'timestamp': _getCurrentTime(),
-      };
-
       setState(() {
         // Add user's message
-        _messages.add(userMessage);
-
-        // Simulate a bot response
         _messages.add({
-          'sender': 'Bot',
-          'content': _generateBotResponse(userMessage['content']!),
+          'sender': 'You',
+          'content': _messageController.text,
           'timestamp': _getCurrentTime(),
         });
 
@@ -63,33 +37,26 @@ class _ChatPageState extends State<ChatPage> {
     return '$hours:$minutes $period'; // Return formatted time
   }
 
-  String _generateBotResponse(String userMessage) {
-    // Simple bot response logic
-    return 'You said: "$userMessage"';
-  }
-
-  void _closeTicket() {
-    // Handle the close ticket logic here
+  void _handleTicketStatus(String status) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Close Ticket'),
-          content: Text('Are you sure you want to close this ticket?'),
+          title: Text('$status Ticket'),
+          content: Text('Are you sure you want to mark this ticket as $status?'),
           actions: [
             TextButton(
               onPressed: () {
-                Navigator.of(context).pop(); // Close the dialog
+                Navigator.of(context).pop();
               },
               child: Text('Cancel'),
             ),
             TextButton(
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Userpage()));
-                // Add any additional logic for closing the ticket here
+                Navigator.pop(context); // Close dialog
+                // You can handle additional logic here if needed
               },
-              child: Text('Close Ticket'),
+              child: Text(status),
             ),
           ],
         );
@@ -105,7 +72,10 @@ class _ChatPageState extends State<ChatPage> {
         actions: [
           IconButton(
             icon: Icon(Icons.close),
-            onPressed: _closeTicket,
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Adminpage()));
+            },
           ),
         ],
       ),
@@ -119,8 +89,7 @@ class _ChatPageState extends State<ChatPage> {
                 bool isSender = message['sender'] == 'You';
 
                 return Align(
-                  alignment:
-                  isSender ? Alignment.centerRight : Alignment.centerLeft,
+                  alignment: isSender ? Alignment.centerRight : Alignment.centerLeft,
                   child: Container(
                     margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                     padding: const EdgeInsets.all(10),
@@ -149,6 +118,7 @@ class _ChatPageState extends State<ChatPage> {
               },
             ),
           ),
+
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
@@ -169,19 +139,34 @@ class _ChatPageState extends State<ChatPage> {
               ],
             ),
           ),
-          // Close Ticket Button
+
+          // Row with Completed and Pending buttons
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: ElevatedButton(
-              onPressed: _closeTicket,
-              child: Text('  Close Ticket  '),
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 15),
-                textStyle: TextStyle(fontSize: 16),
-              ),
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                  onPressed: (){
+                    Navigator.push(context, MaterialPageRoute(builder:(context)=>Adminpage()));
+                  },
+                  child: Text('Mark as Important'),
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
+                    textStyle: TextStyle(fontSize: 16),
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () => _handleTicketStatus('Reraise'),
+                  child: Text('Reraise'),
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
+                    textStyle: TextStyle(fontSize: 16),
+                  ),
+                ),
+              ],
             ),
           ),
-          const SizedBox(height: 10), // Optional spacing below the button
         ],
       ),
     );
