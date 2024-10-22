@@ -394,7 +394,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => SolvePage()),
+                  MaterialPageRoute(builder: (context) => Adminpage()),
                 );
               },
             ),
@@ -574,19 +574,7 @@ class UpdatePasswordPage extends StatelessWidget {
 }
 
 // Example of other pages that were mentioned
-class SolvePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('To Solve'),
-      ),
-      body: Center(
-        child: Text('Solve Page'),
-      ),
-    );
-  }
-}
+
 
 class ReportPage extends StatelessWidget {
   @override

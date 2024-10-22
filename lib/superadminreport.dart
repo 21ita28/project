@@ -1,4 +1,5 @@
 import 'package:college/admin/adminpage.dart';
+import 'package:college/incharge/supergenerate.dart';
 import 'package:college/superadmin.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -246,7 +247,9 @@ class _ReportPageState extends State<ReportPage> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
-                  onPressed: _generateReport,
+                  onPressed:(){
+                    Navigator.push(context, MaterialPageRoute(builder:(context)=>Supergenerate()));
+                  },
                   child: Text('Generate'),
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.symmetric(vertical: 15, horizontal: 25),

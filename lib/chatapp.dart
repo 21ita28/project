@@ -104,7 +104,9 @@ class _ChatPageState extends State<ChatPage> {
         actions: [
           IconButton(
             icon: Icon(Icons.close),
-            onPressed: _closeTicket,
+            onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder:(context)=>Userpage()));
+            },
           ),
         ],
       ),

@@ -1,3 +1,4 @@
+import 'package:college/admin/admingenerate.dart';
 import 'package:college/admin/adminpage.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -245,7 +246,9 @@ class _ReportPageState extends State<ReportPage> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
-                  onPressed: _generateReport,
+                  onPressed:(){
+                    Navigator.push(context, MaterialPageRoute(builder:(context)=>Admingenerate()));
+                  },
                   child: Text('Generate'),
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.symmetric(vertical: 15, horizontal: 25),

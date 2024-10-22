@@ -39,7 +39,7 @@ class _InchargeState extends State<Incharge> {
               leading: Icon(Icons.task_alt),
               title: Text('To Solve'),
               onTap: () {
-                Navigator.pushNamed(context, '/home');
+                  Navigator.push(context, MaterialPageRoute(builder:(context)=>Incharge()));
               },
             ),
             ListTile(
