@@ -1,5 +1,6 @@
 import 'package:college/changepasswordapp.dart';
 import 'package:college/main.dart';
+import 'package:college/superadminreport.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(SuperAdmin());
@@ -64,7 +65,7 @@ class _SuperAdminHomePageState extends State<SuperAdminHomePage> {
               title: Text('Report'),
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ReportPage()));
+                    MaterialPageRoute(builder: (context) => Superadminreport()));
               },
             ),
             ListTile(
@@ -201,32 +202,10 @@ class DeleteUserPage extends StatelessWidget {
 }
 
 // Example Report Page
-class ReportPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Report Page'),
-      ),
-      body: Center(
-        child: Text('Report Page'),
-      ),
-    );
-  }
-}
+
 
 // Example Change Password Page
-class ChangePasswordPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Change Password'),
-      ),
 
-    );
-  }
-}
 
 // Example Update Role Page
 class UpdateRoleApp extends StatelessWidget {

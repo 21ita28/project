@@ -53,7 +53,8 @@ class _AdminchatState extends State<Adminchat> {
             ),
             TextButton(
               onPressed: () {
-                Navigator.pop(context); // Close dialog
+                Navigator.push(context, MaterialPageRoute(builder:(context)=>Adminpage()));
+                // Close dialog
                 // You can handle additional logic here if needed
               },
               child: Text(status),
@@ -147,9 +148,7 @@ class _AdminchatState extends State<Adminchat> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
-                  onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder:(context)=>Adminpage()));
-                  },
+                  onPressed: () => _handleTicketStatus('Mark as Important'),
                   child: Text('Mark as Important'),
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 25),

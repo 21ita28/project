@@ -12,15 +12,14 @@ class ChatApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ChatPage(issueTitle:'',),
+      home: ChatPage(issueTitle: ''),
     );
   }
 }
 
 class ChatPage extends StatefulWidget {
-  final String issueTitle; // Add issueTitle as a property
+  final String issueTitle;
 
-  // Create a constructor that accepts issueTitle as a named parameter
   ChatPage({required this.issueTitle});
 
   @override
@@ -29,47 +28,48 @@ class ChatPage extends StatefulWidget {
 
 class _ChatPageState extends State<ChatPage> {
   final TextEditingController _messageController = TextEditingController();
-  final List<Map<String, String>> _messages = [];
+  final List<Map<String, dynamic>> _messages = [];
+
+  final int userId = 1; // User ID
+  final int adminId = 2; // Admin ID
+  final int superAdminId = 3; // SuperAdmin ID
 
   void _sendMessage() {
     if (_messageController.text.isNotEmpty) {
       final userMessage = {
-        'sender': 'You',
+        'senderId': userId,
         'content': _messageController.text,
         'timestamp': _getCurrentTime(),
       };
 
       setState(() {
-        // Add user's message
         _messages.add(userMessage);
 
         // Simulate a bot response
         _messages.add({
-          'sender': 'Bot',
-          'content': _generateBotResponse(userMessage['content']!),
+          'senderId': adminId, // Or superAdminId if needed
+          'content': _generateBotResponse(userMessage['content'] as String), // Fix here
           'timestamp': _getCurrentTime(),
         });
 
-        _messageController.clear(); // Clear the input field after sending
+        _messageController.clear();
       });
     }
   }
 
   String _getCurrentTime() {
     final now = DateTime.now();
-    final hours = now.hour % 12 == 0 ? 12 : now.hour % 12; // 12-hour format
-    final minutes = now.minute.toString().padLeft(2, '0'); // Leading zero
-    final period = now.hour >= 12 ? 'PM' : 'AM'; // AM/PM
-    return '$hours:$minutes $period'; // Return formatted time
+    final hours = now.hour % 12 == 0 ? 12 : now.hour % 12;
+    final minutes = now.minute.toString().padLeft(2, '0');
+    final period = now.hour >= 12 ? 'PM' : 'AM';
+    return '$hours:$minutes $period';
   }
 
   String _generateBotResponse(String userMessage) {
-    // Simple bot response logic
-    return 'You said: "$userMessage"';
+    return '"$userMessage" acknowledged by Admin';
   }
 
   void _closeTicket() {
-    // Handle the close ticket logic here
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -79,7 +79,7 @@ class _ChatPageState extends State<ChatPage> {
           actions: [
             TextButton(
               onPressed: () {
-                Navigator.of(context).pop(); // Close the dialog
+                Navigator.of(context).pop();
               },
               child: Text('Cancel'),
             ),
@@ -87,7 +87,6 @@ class _ChatPageState extends State<ChatPage> {
               onPressed: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => Userpage()));
-                // Add any additional logic for closing the ticket here
               },
               child: Text('Close Ticket'),
             ),
@@ -116,13 +115,14 @@ class _ChatPageState extends State<ChatPage> {
               itemCount: _messages.length,
               itemBuilder: (context, index) {
                 final message = _messages[index];
-                bool isSender = message['sender'] == 'You';
+                bool isSender = message['senderId'] == userId;
 
                 return Align(
                   alignment:
                   isSender ? Alignment.centerRight : Alignment.centerLeft,
                   child: Container(
-                    margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                    margin:
+                    const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       color: isSender ? Colors.blue[200] : Colors.grey[300],
@@ -140,7 +140,8 @@ class _ChatPageState extends State<ChatPage> {
                         SizedBox(height: 5),
                         Text(
                           '${message['timestamp']}',
-                          style: TextStyle(fontSize: 12, color: Colors.grey[600]),
+                          style:
+                          TextStyle(fontSize: 12, color: Colors.grey[600]),
                         ),
                       ],
                     ),
@@ -169,7 +170,6 @@ class _ChatPageState extends State<ChatPage> {
               ],
             ),
           ),
-          // Close Ticket Button
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: ElevatedButton(
@@ -181,7 +181,7 @@ class _ChatPageState extends State<ChatPage> {
               ),
             ),
           ),
-          const SizedBox(height: 10), // Optional spacing below the button
+          const SizedBox(height: 10),
         ],
       ),
     );

@@ -1,7 +1,9 @@
+import 'package:college/admin/adminchangepassword.dart';
 import 'package:college/admin/adminchat.dart';
 import 'package:college/admin/adminpage.dart';
 import 'package:college/admin/adminrise.dart';
 import 'package:college/admin/departmentlistapp.dart';
+import 'package:college/admin/report.dart';
 import 'package:college/admin/updateinchargeapp.dart';
 import 'package:college/main.dart';
 import 'package:flutter/material.dart';
@@ -402,17 +404,17 @@ class _AdminHomePageState extends State<AdminHomePage> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ReportPage()),
+                  MaterialPageRoute(builder: (context) => Report()),
                 );
               },
             ),
             ListTile(
               leading: Icon(Icons.lock),
-              title: Text('Update Password'),
+              title: Text('Change Password'),
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => UpdatePasswordPage()),
+                  MaterialPageRoute(builder: (context) => Adminchangepassword()),
                 );
               },
             ),
