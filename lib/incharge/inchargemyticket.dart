@@ -1,68 +1,33 @@
-import 'package:college/incharge/inchargemyticket.dart';
+import 'package:college/incharge/incharge.dart';
 import 'package:college/incharge/inchargerise.dart';
 import 'package:college/incharge/inchrgechat.dart';
 import 'package:college/main.dart';
 import 'package:flutter/material.dart';
 
-class Incharge extends StatefulWidget {
-  const Incharge({Key? key}) : super(key: key);
+class Inchargemyticket extends StatefulWidget {
+  const Inchargemyticket({Key? key}) : super(key: key);
 
   @override
-  State<Incharge> createState() => _InchargeState();
+  State<Inchargemyticket> createState() => _InchargemyticketState();
 }
 
-class _InchargeState extends State<Incharge> {
+class _InchargemyticketState extends State<Inchargemyticket> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Welcome Incharge!'),
-        // Add the plus button to the AppBar
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.add),
-            onPressed: () {
-              // Navigate to another page when the plus button is clicked
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Inchrgechat()),
-              );
-            },
-          ),
-        ],
-      ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            SizedBox(height: 50),
-            ListTile(
-              leading: Icon(Icons.task_alt),
-              title: Text('To Solve'),
-              onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder:(context)=>Incharge()));
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.confirmation_number),
-              title: Text('My Ticket'),
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder:(context)=>Inchargemyticket()));
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.logout),
-              title: Text('Logout'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => CollegeLoginApp()),
-                );
-              },
-            ),
-          ],
+        title: const Text('My Ticket'),
+        leading: IconButton(
+          // Back arrow as the leading icon
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder:(context)=>Incharge()));// Navigate back to the previous page
+          },
         ),
+
+
       ),
+
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(

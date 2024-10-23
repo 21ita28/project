@@ -4,6 +4,7 @@ import 'package:college/admin/adminpage.dart';
 import 'package:college/admin/adminrise.dart';
 import 'package:college/admin/departmentlistapp.dart';
 import 'package:college/admin/report.dart';
+import 'package:college/admin/ticketpage.dart';
 import 'package:college/admin/updateinchargeapp.dart';
 import 'package:college/main.dart';
 import 'package:flutter/material.dart';
@@ -370,7 +371,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Admin Dashboard'),
+        title: const Text('Welcome Admin!'),
         actions: [
           IconButton(
             icon: const Icon(Icons.add),
@@ -424,7 +425,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => TicketPage()),
+                  MaterialPageRoute(builder: (context) => Ticketpage()),
                 );
               },
             ),
@@ -558,49 +559,10 @@ class _AdminHomePageState extends State<AdminHomePage> {
   }
 }
 
-// Example of Change Password Page
-class UpdatePasswordPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Update Password'),
-      ),
-      body: Center(
-        child: Text('Update Password Page'),
-      ),
-    );
-  }
-}
-
-// Example of other pages that were mentioned
 
 
-class ReportPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Report'),
-      ),
-      body: Center(
-        child: Text('Report Page'),
-      ),
-    );
-  }
-}
 
-class TicketPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('My Ticket'),
-      ),
-      body: Center(
-        child: Text('My Ticket Page'),
-      ),
-    );
-  }
-}
+
+
+
 

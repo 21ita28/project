@@ -10,7 +10,7 @@ class SuperAdmin extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Super Admin Dashboard',
+      title: 'Welcome SuperAdmin!',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
