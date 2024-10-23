@@ -1,4 +1,5 @@
 import 'package:college/admin/adminpage.dart';
+import 'package:college/forgotpassword.dart';
 import 'package:college/incharge/incharge.dart';
 import 'package:college/superadmin.dart';
 import 'package:college/userpage.dart';
@@ -157,6 +158,7 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(height: 20.0),
             GestureDetector(
               onTap: () {
+                Navigator.pushReplacement(context, MaterialPageRoute(builder:(context)=>Forgotpassword()));
                 // Logic to handle 'Forgot Password' action
               },
               child: Text(

@@ -1,4 +1,6 @@
 import 'package:college/changepasswordapp.dart';
+import 'package:college/createuser.dart';
+import 'package:college/deleteuser.dart';
 import 'package:college/main.dart';
 import 'package:college/superadminreport.dart';
 import 'package:flutter/material.dart';
@@ -49,7 +51,7 @@ class _SuperAdminHomePageState extends State<SuperAdminHomePage> {
               title: Text('Create Users'),
               onTap: () {
                 Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => CreateUserPage()));
+                    MaterialPageRoute(builder: (context) => Createuser()));
               },
             ),
             ListTile(
@@ -57,7 +59,7 @@ class _SuperAdminHomePageState extends State<SuperAdminHomePage> {
               title: Text('Delete Users'),
               onTap: () {
                 Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => DeleteUserPage()));
+                    MaterialPageRoute(builder: (context) => Deleteuser()));
               },
             ),
             ListTile(
@@ -172,34 +174,7 @@ class _DepartmentPageState extends State<DepartmentPage> {
 }
 
 // Example Create User Page
-class CreateUserPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Create User'),
-      ),
-      body: Center(
-        child: Text('Create User Page'),
-      ),
-    );
-  }
-}
 
-// Example Delete User Page
-class DeleteUserPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Delete User'),
-      ),
-      body: Center(
-        child: Text('Delete User Page'),
-      ),
-    );
-  }
-}
 
 // Example Report Page
 
