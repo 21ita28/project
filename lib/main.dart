@@ -55,25 +55,25 @@ class _LoginPageState extends State<LoginPage> {
       );
     }else if (username == "user" && password == "test") {
       // Navigate to the UserPage when the username and password match
-      Navigator.push(
+      Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => Userpage()),
       );}
     else if (username == "sadmin" && password == "test") {
       // Navigate to the UserPage when the username and password match
-      Navigator.push(
+      Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => SuperAdmin()),
       );}
     else if (username == "incharge" && password == "test") {
       // Navigate to the UserPage when the username and password match
-      Navigator.push(
+      Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => Incharge()),
       );}
     else if (username == "admin" && password == "test") {
       // Navigate to the UserPage when the username and password match
-      Navigator.push(
+      Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => Adminpage()),
       );}

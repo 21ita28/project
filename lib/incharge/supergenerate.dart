@@ -76,7 +76,7 @@ class ProblemTablePage extends StatelessWidget {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => Superadminreport()));
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Superadminreport()));
           },
         ),
       ),

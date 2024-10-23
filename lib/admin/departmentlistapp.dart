@@ -88,7 +88,7 @@ class _DepartmentListPageState extends State<DepartmentListPage> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder:(context)=>Adminpage()));
+            Navigator.pushReplacement(context, MaterialPageRoute(builder:(context)=>Adminpage()));
           },
         ),
       ),

@@ -44,7 +44,7 @@ class _UpdateInchargePageState extends State<UpdateInchargePage> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder:(context)=>Adminpage())); // Go back to the previous screen
+            Navigator.pushReplacement(context, MaterialPageRoute(builder:(context)=>Adminpage())); // Go back to the previous screen
           },
         ),
       ),
@@ -100,7 +100,7 @@ class _UpdateInchargePageState extends State<UpdateInchargePage> {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder:(context)=>Adminpage()));
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder:(context)=>Adminpage()));
                     if (selectedDepartment != null &&
                         selectedIncharge != null) {
                       ScaffoldMessenger.of(context).showSnackBar(

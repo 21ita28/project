@@ -23,7 +23,7 @@ class _InchargeState extends State<Incharge> {
             icon: const Icon(Icons.add),
             onPressed: () {
               // Navigate to another page when the plus button is clicked
-              Navigator.push(
+              Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => Inchrgechat()),
               );
@@ -40,21 +40,21 @@ class _InchargeState extends State<Incharge> {
               leading: Icon(Icons.task_alt),
               title: Text('To Solve'),
               onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder:(context)=>Incharge()));
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder:(context)=>Incharge()));
               },
             ),
             ListTile(
               leading: Icon(Icons.confirmation_number),
               title: Text('My Ticket'),
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder:(context)=>Inchargemyticket()));
+                Navigator.pushReplacement(context, MaterialPageRoute(builder:(context)=>Inchargemyticket()));
               },
             ),
             ListTile(
               leading: Icon(Icons.logout),
               title: Text('Logout'),
               onTap: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => CollegeLoginApp()),
                 );
@@ -104,7 +104,7 @@ class _InchargeState extends State<Incharge> {
                       GestureDetector(
                         onTap: () {
                           // Pass 'No Light' as the issue title
-                          Navigator.push(
+                          Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                               builder: (context) => Inchargerise(issueTitle: 'No Light'),
@@ -130,7 +130,7 @@ class _InchargeState extends State<Incharge> {
                       GestureDetector(
                         onTap: () {
                           // Pass 'No Fan' as the issue title
-                          Navigator.push(
+                          Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                               builder: (context) => Inchargerise(issueTitle: 'No Fan'),

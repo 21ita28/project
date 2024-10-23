@@ -376,7 +376,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
           IconButton(
             icon: const Icon(Icons.add),
             onPressed: () {
-              Navigator.push(
+              Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => Adminrise()),
               );
@@ -393,7 +393,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
               leading: Icon(Icons.task),
               title: Text('To Solve'),
               onTap: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => Adminpage()),
                 );
@@ -403,7 +403,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
               leading: Icon(Icons.report),
               title: Text('Report'),
               onTap: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => Report()),
                 );
@@ -413,7 +413,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
               leading: Icon(Icons.lock),
               title: Text('Change Password'),
               onTap: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => Adminchangepassword()),
                 );
@@ -423,7 +423,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
               leading: Icon(Icons.confirmation_number),
               title: Text('My Ticket'),
               onTap: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => Ticketpage()),
                 );
@@ -433,7 +433,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
               leading: Icon(Icons.supervised_user_circle),
               title: Text('Update Incharge'),
               onTap: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => UpdateInchargeApp()),
                 );
@@ -443,7 +443,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
               leading: Icon(Icons.departure_board),
               title: Text('Enable Department'),
               onTap: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => DepartmentListApp()),
                 );
@@ -453,7 +453,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
               leading: Icon(Icons.logout),
               title: Text('Logout'),
               onTap: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => CollegeLoginApp()),
                 );
@@ -501,7 +501,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
                     DataCell(
                       GestureDetector(
                         onTap: () {
-                          Navigator.push(
+                          Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                               builder: (context) => Adminchat(
@@ -529,7 +529,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
                     DataCell(
                       GestureDetector(
                         onTap: () {
-                          Navigator.push(
+                          Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                               builder: (context) => Adminchat(

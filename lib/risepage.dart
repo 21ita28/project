@@ -112,7 +112,7 @@ class _RisePageState extends State<Risepage>{
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder:(context)=>Userpage()));
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder:(context)=>Userpage()));
                     if (_validateProblem(_problemController.text) == null &&
                         _validateDescription(_descriptionController.text) ==
                             null) {
@@ -124,7 +124,7 @@ class _RisePageState extends State<Risepage>{
                 SizedBox(width: 10),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder:(context)=>Userpage()));
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder:(context)=>Userpage()));
                   },
                   child: Text('Cancel'),
                 ),

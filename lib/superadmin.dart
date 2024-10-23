@@ -40,7 +40,7 @@ class _SuperAdminHomePageState extends State<SuperAdminHomePage> {
               leading: Icon(Icons.home),
               title: Text('Department'),
               onTap: () {
-                Navigator.push(context,
+                Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (context) => DepartmentPage()));
               },
             ),
@@ -48,7 +48,7 @@ class _SuperAdminHomePageState extends State<SuperAdminHomePage> {
               leading: Icon(Icons.person_add),
               title: Text('Create Users'),
               onTap: () {
-                Navigator.push(context,
+                Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (context) => CreateUserPage()));
               },
             ),
@@ -56,7 +56,7 @@ class _SuperAdminHomePageState extends State<SuperAdminHomePage> {
               leading: Icon(Icons.person_remove),
               title: Text('Delete Users'),
               onTap: () {
-                Navigator.push(context,
+                Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (context) => DeleteUserPage()));
               },
             ),
@@ -64,7 +64,7 @@ class _SuperAdminHomePageState extends State<SuperAdminHomePage> {
               leading: Icon(Icons.report),
               title: Text('Report'),
               onTap: () {
-                Navigator.push(context,
+                Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (context) => Superadminreport()));
               },
             ),
@@ -72,7 +72,7 @@ class _SuperAdminHomePageState extends State<SuperAdminHomePage> {
               leading: Icon(Icons.lock),
               title: Text('Change Password'),
               onTap: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                         builder: (context) => ChangePasswordApp()));
@@ -82,7 +82,7 @@ class _SuperAdminHomePageState extends State<SuperAdminHomePage> {
               leading: Icon(Icons.update),
               title: Text('Update Role'),
               onTap: () {
-                Navigator.push(context,
+                Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (context) => UpdateRoleApp()));
               },
             ),
@@ -91,7 +91,7 @@ class _SuperAdminHomePageState extends State<SuperAdminHomePage> {
               title: Text('Logout'),
               onTap: () {
                 // Implement logout functionality here
-                Navigator.push(context,
+                Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (context) => CollegeLoginApp()));
               },
             ),
@@ -246,7 +246,7 @@ class _UpdateRolePageState extends State<UpdateRolePage> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder:(context)=>SuperAdmin()));
+            Navigator.pushReplacement(context, MaterialPageRoute(builder:(context)=>SuperAdmin()));
              // Go back to the previous screen
           },
         ),
@@ -303,7 +303,7 @@ class _UpdateRolePageState extends State<UpdateRolePage> {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder:(context)=>SuperAdmin()));
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder:(context)=>SuperAdmin()));
                     if (selectedUser != null && selectedRole != null) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(

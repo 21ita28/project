@@ -113,7 +113,7 @@ class _InchrgechatState extends State<Inchrgechat>{
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder:(context)=>Incharge()));
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder:(context)=>Incharge()));
                     if (_validateProblem(_problemController.text) == null &&
                         _validateDescription(_descriptionController.text) ==
                             null) {
@@ -125,7 +125,7 @@ class _InchrgechatState extends State<Inchrgechat>{
                 SizedBox(width: 10),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder:(context)=>Incharge()));
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder:(context)=>Incharge()));
                   },
                   child: Text('Cancel'),
                 ),

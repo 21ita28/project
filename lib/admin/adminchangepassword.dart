@@ -72,7 +72,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back), // Back button icon
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder:(context)=>Adminpage()));
+            Navigator.pushReplacement(context, MaterialPageRoute(builder:(context)=>Adminpage()));
             // Go back when pressed
           },
         ),

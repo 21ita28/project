@@ -34,7 +34,7 @@ class _UserpageState extends State<Userpage> {
 
                   onTap: () {
                     // Navigate to the chat page when clicked
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                         builder: (context) => Userchangepassword(),
@@ -53,7 +53,7 @@ class _UserpageState extends State<Userpage> {
 
                   onTap: () {
                     // Navigate to the chat page when clicked
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                         builder: (context) => CollegeLoginApp(),
@@ -109,7 +109,7 @@ class _UserpageState extends State<Userpage> {
                       GestureDetector(
                         onTap: () {
                           // Pass 'No Light' as the issue title
-                          Navigator.push(
+                          Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                               builder: (context) => ChatPage(issueTitle: 'No Light'),
@@ -135,7 +135,7 @@ class _UserpageState extends State<Userpage> {
                       GestureDetector(
                         onTap: () {
                           // Pass 'No Fan' as the issue title
-                          Navigator.push(
+                          Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                               builder: (context) => ChatPage(issueTitle: 'No Fan'),
@@ -192,7 +192,7 @@ class _UserpageState extends State<Userpage> {
     return ElevatedButton(
       onPressed: () {
         // Navigate to another page when clicked
-        Navigator.push(context, MaterialPageRoute(builder:(context)=>Risepage()));
+        Navigator.pushReplacement(context, MaterialPageRoute(builder:(context)=>Risepage()));
       },
       style: ElevatedButton.styleFrom(
         shape: const CircleBorder(),

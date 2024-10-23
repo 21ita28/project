@@ -153,7 +153,7 @@ class _ReportPageState extends State<ReportPage> {
           // Back arrow as the leading icon
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder:(context)=>SuperAdmin()));// Navigate back to the previous page
+            Navigator.pushReplacement(context, MaterialPageRoute(builder:(context)=>SuperAdmin()));// Navigate back to the previous page
           },
         ),
       ),
@@ -248,7 +248,7 @@ class _ReportPageState extends State<ReportPage> {
               children: [
                 ElevatedButton(
                   onPressed:(){
-                    Navigator.push(context, MaterialPageRoute(builder:(context)=>Supergenerate()));
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder:(context)=>Supergenerate()));
                   },
                   child: Text('Generate'),
                   style: ElevatedButton.styleFrom(

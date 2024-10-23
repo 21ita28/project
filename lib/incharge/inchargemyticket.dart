@@ -21,7 +21,7 @@ class _InchargemyticketState extends State<Inchargemyticket> {
           // Back arrow as the leading icon
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder:(context)=>Incharge()));// Navigate back to the previous page
+            Navigator.pushReplacement(context, MaterialPageRoute(builder:(context)=>Incharge()));// Navigate back to the previous page
           },
         ),
 
@@ -69,7 +69,7 @@ class _InchargemyticketState extends State<Inchargemyticket> {
                       GestureDetector(
                         onTap: () {
                           // Pass 'No Light' as the issue title
-                          Navigator.push(
+                          Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                               builder: (context) => Inchargerise(issueTitle: 'No Light'),
@@ -95,7 +95,7 @@ class _InchargemyticketState extends State<Inchargemyticket> {
                       GestureDetector(
                         onTap: () {
                           // Pass 'No Fan' as the issue title
-                          Navigator.push(
+                          Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                               builder: (context) => Inchargerise(issueTitle: 'No Fan'),

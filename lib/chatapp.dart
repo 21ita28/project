@@ -85,7 +85,7 @@ class _ChatPageState extends State<ChatPage> {
             ),
             TextButton(
               onPressed: () {
-                Navigator.push(context,
+                Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (context) => Userpage()));
               },
               child: Text('Close Ticket'),
@@ -105,7 +105,7 @@ class _ChatPageState extends State<ChatPage> {
           IconButton(
             icon: Icon(Icons.close),
             onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder:(context)=>Userpage()));
+              Navigator.pushReplacement(context, MaterialPageRoute(builder:(context)=>Userpage()));
             },
           ),
         ],

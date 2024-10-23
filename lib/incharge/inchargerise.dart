@@ -66,7 +66,7 @@ class _InchargeriseState extends State<Inchargerise> {
             ),
             TextButton(
               onPressed: () {
-                Navigator.push(context,
+                Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (context) => Incharge()));
                 // Add any additional logic for ticket status update here
               },
@@ -87,7 +87,7 @@ class _InchargeriseState extends State<Inchargerise> {
           IconButton(
             icon: Icon(Icons.close),
             onPressed: () {
-              Navigator.push(
+              Navigator.pushReplacement(
                   context, MaterialPageRoute(builder: (context) => Incharge()));
             },
           ),

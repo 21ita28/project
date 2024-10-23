@@ -53,7 +53,7 @@ class _AdminchatState extends State<Adminchat> {
             ),
             TextButton(
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder:(context)=>Adminpage()));
+                Navigator.pushReplacement(context, MaterialPageRoute(builder:(context)=>Adminpage()));
                 // Close dialog
                 // You can handle additional logic here if needed
               },
@@ -74,7 +74,7 @@ class _AdminchatState extends State<Adminchat> {
           IconButton(
             icon: Icon(Icons.close),
             onPressed: () {
-              Navigator.push(
+              Navigator.pushReplacement(
                   context, MaterialPageRoute(builder: (context) => Adminpage()));
             },
           ),

@@ -114,7 +114,7 @@ class _AdminriseState extends State<Adminrise>{
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder:(context)=>Adminpage()));
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder:(context)=>Adminpage()));
                     if (_validateProblem(_problemController.text) == null &&
                         _validateDescription(_descriptionController.text) ==
                             null) {
@@ -126,7 +126,7 @@ class _AdminriseState extends State<Adminrise>{
                 SizedBox(width: 10),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder:(context)=>Adminpage()));
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder:(context)=>Adminpage()));
                   },
                   child: Text('Cancel'),
                 ),
