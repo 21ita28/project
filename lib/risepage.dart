@@ -46,6 +46,13 @@ class _RisePageState extends State<Risepage>{
             style: TextStyle(fontWeight: FontWeight.bold), // Bold text
           ),
         ),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back), // Back button icon
+          onPressed: () {
+            Navigator.pushReplacement(context, MaterialPageRoute(builder:(context)=>Userpage()));
+            //Go back when pressed
+          },
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -90,21 +97,32 @@ class _RisePageState extends State<Risepage>{
               'Select Department:',
               style: TextStyle(fontSize: 18),
             ),
-            DropdownButton<String>(
-              value: _selectedDepartment,
-              onChanged: (String? newValue) {
-                setState(() {
-                  _selectedDepartment = newValue;
-                });
-              },
-              items: <String>[]
-                  .map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-              hint: Text('Select a department'),
+            const SizedBox(height: 5),
+            Container(
+              width: double.infinity, // Set the width of the dropdown to match other fields
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey), // Add a border to match the text field
+                borderRadius: BorderRadius.circular(5),
+              ),
+              child: DropdownButton<String>(
+                isExpanded: true, // Ensure the dropdown expands to full width
+                value: _selectedDepartment,
+                onChanged: (String? newValue) {
+                  setState(() {
+                    _selectedDepartment = newValue;
+                  });
+                },
+                items: <String>[]
+                    .map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+                hint: const Text('Select a department'),
+                underline: SizedBox(), // Remove default underline
+              ),
             ),
             SizedBox(height: 20),
             Row(

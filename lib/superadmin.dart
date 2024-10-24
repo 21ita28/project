@@ -33,75 +33,106 @@ class _SuperAdminHomePageState extends State<SuperAdminHomePage> {
       appBar: AppBar(
         title: Text('Super Admin Dashboard'),
       ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            SizedBox(height: 50),
-            ListTile(
-              leading: Icon(Icons.home),
-              title: Text('Department'),
-              onTap: () {
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => DepartmentPage()));
-              },
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          // Grid of 3 rows and 2 columns of buttons
+          Expanded(
+            child: GridView.count(
+              crossAxisCount: 2, // 2 items per row
+              crossAxisSpacing: 10.0,
+              mainAxisSpacing: 10.0,
+              padding: const EdgeInsets.all(16.0),
+              children: [
+                _buildGridButton(
+                  icon: Icons.home,
+                  label: 'Department',
+                  onTap: () {
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => DepartmentPage()));
+                  },
+                ),
+                _buildGridButton(
+                  icon: Icons.person_add,
+                  label: 'Create Users',
+                  onTap: () {
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Createuser()));
+                  },
+                ),
+                _buildGridButton(
+                  icon: Icons.person_remove,
+                  label: 'Delete Users',
+                  onTap: () {
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Deleteuser()));
+                  },
+                ),
+                _buildGridButton(
+                  icon: Icons.report,
+                  label: 'Report',
+                  onTap: () {
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Superadminreport()));
+                  },
+                ),
+                _buildGridButton(
+                  icon: Icons.lock,
+                  label: 'Change Password',
+                  onTap: () {
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ChangePasswordApp()));
+                  },
+                ),
+                _buildGridButton(
+                  icon: Icons.update,
+                  label: 'Update Role',
+                  onTap: () {
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => UpdateRoleApp()));
+                  },
+                ),
+              ],
             ),
-            ListTile(
-              leading: Icon(Icons.person_add),
-              title: Text('Create Users'),
-              onTap: () {
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => Createuser()));
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.person_remove),
-              title: Text('Delete Users'),
-              onTap: () {
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => Deleteuser()));
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.report),
-              title: Text('Report'),
-              onTap: () {
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => Superadminreport()));
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.lock),
-              title: Text('Change Password'),
-              onTap: () {
-                Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ChangePasswordApp()));
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.update),
-              title: Text('Update Role'),
-              onTap: () {
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => UpdateRoleApp()));
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.logout),
-              title: Text('Logout'),
-              onTap: () {
+          ),
+          // Logout button centered at the bottom
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: ElevatedButton.icon(
+              onPressed: () {
                 // Implement logout functionality here
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => CollegeLoginApp()));
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => CollegeLoginApp()));
               },
+              icon: Icon(Icons.logout),
+              label: Text('Logout'),
+              style: ElevatedButton.styleFrom(
+                minimumSize: Size(double.infinity, 50), // Full-width button
+                backgroundColor: Colors.red,
+              ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
-      body: Center(
-        child: Text('Welcome to Super Admin Dashboard'),
+    );
+  }
+
+  // Helper function to create a grid button
+  Widget _buildGridButton({
+    required IconData icon,
+    required String label,
+    required Function onTap,
+  }) {
+    return ElevatedButton(
+      onPressed: () => onTap(),
+      style: ElevatedButton.styleFrom(
+        padding: const EdgeInsets.all(16.0),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.0), // Change this value for more or less rounded corners
+          side: BorderSide(color: Colors.grey, width: 1), // Optional: border color and width
+        ),
+        elevation: 2, // Optional: to give a slight elevation effect
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(icon, size: 50),
+          SizedBox(height: 10),
+          Text(label, textAlign: TextAlign.center),
+        ],
       ),
     );
   }
@@ -116,13 +147,36 @@ class DepartmentPage extends StatefulWidget {
 class _DepartmentPageState extends State<DepartmentPage> {
   final TextEditingController _departmentController = TextEditingController();
 
+  List<String> departments = ['HR', 'Finance', 'IT', 'Marketing'];
+  List<String> inCharges = ['Alice', 'Bob', 'Charlie', 'David'];
+
+  String? selectedDepartment;
+  String? selectedInCharge;
+
   void _addDepartment() {
     String department = _departmentController.text;
     if (department.isNotEmpty) {
       setState(() {
+        departments.add(department); // Add the new department to the list
         _departmentController.clear();
-        // Add logic to save department
       });
+    }
+  }
+
+  void _updateInCharge() {
+    if (selectedDepartment != null && selectedInCharge != null) {
+      // Logic to update the in-charge for the selected department
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Updated in-charge for $selectedDepartment to $selectedInCharge!'),
+        ),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Please select both department and in-charge.'),
+        ),
+      );
     }
   }
 
@@ -131,6 +185,13 @@ class _DepartmentPageState extends State<DepartmentPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Department Management'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back), // Back button icon
+          onPressed: () {
+            Navigator.pushReplacement(context, MaterialPageRoute(builder:(context)=>SuperAdmin()));
+            //Go back when pressed
+          },
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -149,6 +210,44 @@ class _DepartmentPageState extends State<DepartmentPage> {
                 hintText: 'Department Name',
               ),
             ),
+
+            SizedBox(height: 30), // Space between sections
+            Text(
+              'Update In-Charge',
+              style: TextStyle(fontSize: 18),
+            ),
+            SizedBox(height: 10),
+
+// Wrap the DropdownButton with a Container to add border
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.grey, // Set the border color
+                  width: 1.0, // Set the border width
+                ),
+                borderRadius: BorderRadius.circular(5.0), // Set the border radius
+              ),
+              padding: EdgeInsets.symmetric(horizontal: 12.0),
+              child: DropdownButton<String>(
+                value: selectedInCharge,
+                hint: const Text('Select In-Charge'),
+                isExpanded: true,
+                underline: SizedBox(), // Remove the default underline of the DropdownButton
+                items: inCharges.map((String inCharge) {
+                  return DropdownMenuItem<String>(
+                    value: inCharge,
+                    child: Text(inCharge),
+                  );
+                }).toList(),
+                onChanged: (String? newValue) {
+                  setState(() {
+                    selectedInCharge = newValue;
+                  });
+                },
+              ),
+            ),
+
+
             SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -166,23 +265,14 @@ class _DepartmentPageState extends State<DepartmentPage> {
                 ),
               ],
             ),
+            // Button to update in-charge
+
           ],
         ),
       ),
     );
   }
 }
-
-// Example Create User Page
-
-
-// Example Report Page
-
-
-// Example Change Password Page
-
-
-// Example Update Role Page
 class UpdateRoleApp extends StatelessWidget {
   const UpdateRoleApp({Key? key}) : super(key: key);
 
@@ -222,7 +312,7 @@ class _UpdateRolePageState extends State<UpdateRolePage> {
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pushReplacement(context, MaterialPageRoute(builder:(context)=>SuperAdmin()));
-             // Go back to the previous screen
+            // Go back to the previous screen
           },
         ),
       ),
@@ -314,4 +404,3 @@ class _UpdateRolePageState extends State<UpdateRolePage> {
     );
   }
 }
-
